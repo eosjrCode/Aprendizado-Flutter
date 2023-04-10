@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
+import 'models/location.dart';
+import 'models/location_fact.dart';
 
 class LocationDetail extends StatelessWidget {
+  final Location location;
+
+  LocationDetail(this.location);
+
   @override
   Widget build(BuildContext context) {
     //
     //build contém a logica que o flutter precisa pra pintar os itens na tela
     return Scaffold(
         // o esqueleto onde todos os outros widgets vão aparecer
-        appBar: AppBar(
-            title: Text("Hello, World")), // uma barra de aplicativo comum
+        appBar:
+            AppBar(title: Text(location.name)), // uma barra de aplicativo comum
         body: Column(
           mainAxisAlignment:
               MainAxisAlignment.start, // alinhamento do eixo Y do texto
           crossAxisAlignment:
               CrossAxisAlignment.stretch, //  alinhamento eixy x do texto
-          children: [
-            _section("One!", Colors.red),
-            _section("Two!", Colors.green),
-            _section("Three!", Colors.blue),
-          ],
+          children: _renderFacts(location),
         ));
   }
 
-  Widget _section(String title, Color color) {
-    return Container(
-      // em html seria um div, um widget em forma de bloco
-      decoration: BoxDecoration(
-        //permite especificar um parametro de cor de fundo do container
-        color:
-            color, // essa constante é pré definida quando compilamos o app, evitando computação em tempo de execução
-      ),
+  List<Widget> _renderFacts(Location location) {
+    // ignore: deprecated_member_use
+    var result = <Widget>[];
+    for (int i = 0; i < location.facts.length; i++) {
+      result.add(_sectionTitle(location.facts[i].title));
+      result.add(_sectionText(location.facts[i].text));
+    }
+    return result;
+  }
 
-      child: Text(title),
-    );
+  Widget _sectionTitle(String text) {
+    return Text(text);
+  }
+
+  Widget _sectionText(String text) {
+    return Text(text);
   }
 }
