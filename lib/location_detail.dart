@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'models/location.dart';
-import 'models/location_fact.dart';
 
 class LocationDetail extends StatelessWidget {
   final Location location;
@@ -9,23 +8,24 @@ class LocationDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //
-    //build contém a logica que o flutter precisa pra pintar os itens na tela
     return Scaffold(
-        // o esqueleto onde todos os outros widgets vão aparecer
-        appBar:
-            AppBar(title: Text(location.name)), // uma barra de aplicativo comum
+        appBar: AppBar(title: Text(location.name)),
         body: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.start, // alinhamento do eixo Y do texto
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch, //  alinhamento eixy x do texto
-          children: _renderFacts(location),
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: _renderBody(context, location),
         ));
   }
 
-  List<Widget> _renderFacts(Location location) {
-    // ignore: deprecated_member_use
+ List<Widget> _renderBody(BuildContext context, Location location) {
+    var result = <Widget>[];
+    result.add(_bannerImage(location.url, 170.0));
+    result.addAll(_renderFacts(context, location));
+    return result;
+  } 
+
+   
+ List<Widget> _renderFacts(BuildContext context, Location location) {
     var result = <Widget>[];
     for (int i = 0; i < location.facts.length; i++) {
       result.add(_sectionTitle(location.facts[i].title));
@@ -34,11 +34,24 @@ class LocationDetail extends StatelessWidget {
     return result;
   }
 
-  Widget _sectionTitle(String text) {
-    return Text(text);
+ Widget _sectionTitle(String text) {
+    return Container(
+        padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 10.0),
+        child: Text(text,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Colors.black,
+            )));
   }
 
   Widget _sectionText(String text) {
     return Text(text);
   }
-}
+    Widget _bannerImage (String url, double height){
+      return Container(
+      constraints: BoxConstraints.tightFor(height: height),
+      child: Image.network(url, fit: BoxFit.fitWidth),
+      );
+    }
+  }
