@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:treino/location_detail.dart';
+import 'location_detail.dart';
+import 'mocks/mock_location.dart';
+import 'models/location.dart';
 
 void main() {
-  return runApp(MaterialApp(home:LocationDetail()));
+  final Location mockLocation = MockLocation.FetchAny();
+
+  return runApp(MaterialApp(home:LocationDetail(mockLocation)));
 }

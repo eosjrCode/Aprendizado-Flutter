@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'models/location.dart';
 
 class LocationDetail extends StatelessWidget{
+  final Location location;
+
+  LocationDetail(this.location);
 
 @override
 Widget build(BuildContext context){
@@ -12,8 +16,8 @@ return Scaffold(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _section("One!", Colors.red),
-              _section("Two!", Colors.grey),
+              _section("One!", Colors.grey),
+              _section("Two!", Colors.red),
               _section("Three!", Colors.green),
 
             ],
