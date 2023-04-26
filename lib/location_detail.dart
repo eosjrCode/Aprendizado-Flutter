@@ -13,27 +13,55 @@ return Scaffold(
       appBar: AppBar(
         title: Text("Hello World")),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _section("One!", Colors.grey),
-              _section("Two!", Colors.red),
-              _section("Three!", Colors.green),
+            children: _renderBody(context, location),              
 
-            ],
           ));
 }
     
+    List<Widget> _renderBody(BuildContext context, Location location){
+      var result = <Widget>[];
+      result.add(_bannerImage(location.url, 170.0));
+      result.addAll(_renderFacts(context,location));
+      return result;
+    }
 
-  Widget _section (String title, Color color){
+    List<Widget> _renderFacts (BuildContext context, Location location){
+      var result = <Widget>[];
+      for (int i = 0; i < location.facts.length; i++){
+        result.add(_sectionTitle(location.facts[i].title));
+        result.add(_sectionText(location.facts[i].text));
+      }
+      return result;
+    }
 
-      return Container(
-        decoration: BoxDecoration(
-          color: color,
-          
-        ),
-        child: Text(title),
-      );
+
+
+  Widget _sectionTitle (String text){
+    return Container(
+      padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 10.0),
+      child: Text(text,
+      textAlign: TextAlign.left,
+      style: TextStyle(
+        fontSize: 25.0,
+        color: Colors.black,
+      )));
+  }
+
+  Widget _sectionText (String text){
+    return Container(
+      padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 15.0),
+      child: Text((text)));
+    
+    
+  }
+
+  Widget _bannerImage (String url, double height){
+    return Container(
+      constraints:BoxConstraints.tightFor(height: height),
+      child: Image.network(url, fit: BoxFit.fitWidth),
+    );
   }
   
 }
