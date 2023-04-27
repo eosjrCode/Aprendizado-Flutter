@@ -1,4 +1,4 @@
-name: treino
+name: lesson02
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -74,11 +74,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
- fonts:
-    - family: Muli
-      fonts:
-        - asset: assets/fonts/Muli-Light.ttf
-          weight: 300
   # fonts:
   #   - family: Schyler
   #     fonts:
@@ -90,6 +85,11 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+ 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Muli
+      fonts:
+        - asset: assets/fonts/Muli-Light.ttf
+          weight: 300
