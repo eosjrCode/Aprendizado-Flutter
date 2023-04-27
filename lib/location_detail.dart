@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'models/location.dart';
+import 'styles.dart';
 
 class LocationDetail extends StatelessWidget{
   final Location location;
@@ -11,9 +12,10 @@ Widget build(BuildContext context){
 
 return Scaffold(
       appBar: AppBar(
-        title: Text("Hello World")),
+        title: Text(location.name, style:
+         Styles.navBarTitle)),
           body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: _renderBody(context, location),              
 
@@ -32,6 +34,7 @@ return Scaffold(
       for (int i = 0; i < location.facts.length; i++){
         result.add(_sectionTitle(location.facts[i].title));
         result.add(_sectionText(location.facts[i].text));
+        
       }
       return result;
     }
