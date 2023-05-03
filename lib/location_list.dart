@@ -27,12 +27,12 @@ Widget _listViewItemBuilder (BuildContext context, int index){
               leading: _itemThumbnail(this.locations[index]),
               title: _itemTitle(this.locations[index]),
               onTap: () =>
-               _navigationToLocationDetail(context, this.locations[index]));
+               _navigationToLocationDetail(context, index));
 }
 
-void _navigationToLocationDetail (BuildContext context, Location location) {
+void _navigationToLocationDetail (BuildContext context, int locationID) {
   Navigator.push(context, MaterialPageRoute(
-    builder: (context) => LocationDetail(location),
+    builder: (context) => LocationDetail(locationID),
   ));
 }
     Widget _itemThumbnail (Location location){

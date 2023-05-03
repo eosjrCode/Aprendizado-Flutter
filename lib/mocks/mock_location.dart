@@ -76,11 +76,15 @@ import '../models/location_fact.dart';
   ];
 
   static Location fetchAny() {
-    return MockLocation.items[0];
+    return items[0];
   }
 
 static List<Location> fetchAll(){
-  return MockLocation.items;
+  return items;
+}
+
+static Location fetch (int index){
+  return MockLocation.items[index];
 }
 
  }
