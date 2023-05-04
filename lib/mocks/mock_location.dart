@@ -1,9 +1,8 @@
 import '../models/location.dart';
 import '../models/location_fact.dart';
 
- mixin MockLocation implements Location {
-   
-    static final List<Location> items = [
+mixin MockLocation implements Location {
+  static final List<Location> items = [
     Location(
         name: 'Arashiyama Bamboo Grove',
         url:
@@ -74,17 +73,15 @@ import '../models/location_fact.dart';
                   'Kyoto airport, with several terminals, is located 16 kilometres south of the city and is also known as Kyoto. Kyoto can also be reached by transport links from other regional airports.')
         ]),
   ];
-
   static Location fetchAny() {
     return items[0];
   }
 
-static List<Location> fetchAll(){
-  return items;
-}
+  static List<Location> fetchAll() {
+    return items;
+  }
 
-static Location fetch (int index){
-  return MockLocation.items[index];
+  static Location fetch(int index) {
+    return MockLocation.items[index];
+  }
 }
-
- }
